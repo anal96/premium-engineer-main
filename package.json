@@ -1,0 +1,7 @@
+{
+  "name": "premium-engineer-main-root",
+  "private": true,
+  "scripts": {
+    "build": "cd premium-engineer-main && npm install && npm run build"
+  }
+}
