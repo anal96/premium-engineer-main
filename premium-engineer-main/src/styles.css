@@ -1,0 +1,223 @@
+@import "tailwindcss" source(none);
+@source "../src";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+/*
+ * Quiet Luxury × Enterprise Technology × Editorial Design
+ * Monochrome charcoal palette with a single burnished-gold accent.
+ * Dark mode only.
+ */
+
+@theme inline {
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-ink: var(--ink);
+  --color-graphite: var(--graphite);
+  --color-titanium: var(--titanium);
+  --color-platinum: var(--platinum);
+  --color-bone: var(--bone);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-line: var(--line);
+  --color-accent: var(--accent);
+  --color-accent-soft: var(--accent-soft);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-primary: var(--accent);
+  --color-primary-foreground: var(--background);
+  --color-border: var(--line);
+  --color-input: var(--line);
+  --color-ring: var(--accent);
+  --color-popover: var(--card);
+  --color-popover-foreground: var(--card-foreground);
+  --color-secondary: var(--graphite);
+  --color-secondary-foreground: var(--bone);
+  --color-accent-foreground: var(--background);
+  --color-destructive: oklch(0.55 0.19 27);
+  --color-destructive-foreground: var(--bone);
+
+  --font-display: "Fraunces", "Times New Roman", serif;
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, monospace;
+
+  --shadow-elevated: 0 30px 60px -30px rgb(0 0 0 / 0.6),
+    0 18px 36px -18px rgb(0 0 0 / 0.4);
+  --shadow-inset-line: inset 0 1px 0 0 rgb(255 255 255 / 0.04);
+}
+
+:root,
+html {
+  --radius: 0.5rem;
+
+  /* Monochrome system */
+  --background: oklch(0.16 0.005 260);   /* rich charcoal #0B0D10-ish */
+  --ink: oklch(0.12 0.005 260);          /* matte black */
+  --graphite: oklch(0.22 0.006 260);     /* warm graphite */
+  --titanium: oklch(0.35 0.005 260);     /* soft titanium */
+  --platinum: oklch(0.72 0.008 260);     /* platinum */
+  --bone: oklch(0.96 0.004 90);          /* off-white */
+  --foreground: var(--bone);
+  --muted: oklch(0.24 0.006 260);
+  --muted-foreground: oklch(0.62 0.008 260);
+  --card: oklch(0.19 0.006 260);
+  --card-foreground: var(--bone);
+  --line: oklch(1 0 0 / 0.08);
+
+  /* Single luxury accent — Burnished Gold */
+  --accent: oklch(0.78 0.115 78);
+  --accent-soft: oklch(0.78 0.115 78 / 0.14);
+
+  color-scheme: dark;
+}
+
+@layer base {
+  * {
+    border-color: var(--line);
+  }
+
+  html,
+  body {
+    background-color: var(--background);
+    color: var(--foreground);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  ::selection {
+    background: var(--accent);
+    color: var(--background);
+  }
+
+  /* Subtle grain — layered noise, not gradients */
+  body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 1;
+    opacity: 0.06;
+    mix-blend-mode: overlay;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='240' height='240'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0.7 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+  }
+
+  h1, h2, h3, h4 {
+    font-family: var(--font-display);
+    font-weight: 400;
+    letter-spacing: -0.03em;
+    line-height: 0.95;
+  }
+}
+
+@utility container-lux {
+  width: 100%;
+  max-width: 84rem;
+  margin-inline: auto;
+  padding-inline: 1.5rem;
+}
+@media (min-width: 768px) {
+  .container-lux { padding-inline: 3rem; }
+}
+@media (min-width: 1280px) {
+  .container-lux { padding-inline: 4.5rem; }
+}
+
+@utility eyebrow {
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--muted-foreground);
+}
+
+@utility hairline {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--line) 20%, var(--line) 80%, transparent);
+}
+
+@utility magnetic {
+  transition: transform 400ms cubic-bezier(0.2, 0.8, 0.2, 1),
+              background-color 300ms ease,
+              color 300ms ease,
+              border-color 300ms ease;
+}
+.magnetic:hover { transform: translateY(-2px); }
+
+@utility reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 900ms cubic-bezier(0.2, 0.8, 0.2, 1),
+              transform 900ms cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+.reveal.is-visible { opacity: 1; transform: none; }
+
+@keyframes drift {
+  0%, 100% { transform: translate3d(0,0,0) scale(1); opacity: 0.55; }
+  50% { transform: translate3d(2%, -3%, 0) scale(1.06); opacity: 0.8; }
+}
+@utility drift-light {
+  animation: drift 14s ease-in-out infinite;
+}
+
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+@utility marquee-track {
+  animation: marquee 40s linear infinite;
+}
+
+/* React Bits — ShinyText shimmer sweep */
+.shiny-text {
+  background: linear-gradient(
+    110deg,
+    color-mix(in oklab, var(--bone) 55%, transparent) 20%,
+    var(--accent) 45%,
+    var(--bone) 55%,
+    color-mix(in oklab, var(--bone) 55%, transparent) 80%
+  );
+  background-size: 220% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: shine var(--shine-speed, 5s) linear infinite;
+}
+@keyframes shine {
+  from { background-position: 220% 0; }
+  to   { background-position: -20% 0; }
+}
+
+/* Hide scrollbar for horizontal scrollers */
+.no-scrollbar::-webkit-scrollbar { display: none; }
+.no-scrollbar { scrollbar-width: none; }
+
+@keyframes cursor-blink {
+  0%, 60% { opacity: 1; }
+  61%, 100% { opacity: 0; }
+}
+@utility caret {
+  animation: cursor-blink 1s steps(1) infinite;
+}
+
+@keyframes ambientPulse {
+  0%, 100% { transform: translate3d(0, 0, 0) scale(0.96); opacity: 0.24; }
+  50% { transform: translate3d(10px, -16px, 0) scale(1.08); opacity: 0.5; }
+}
+
+.ambient-dot {
+  position: absolute;
+  display: block;
+  width: 180px;
+  height: 180px;
+  border-radius: 9999px;
+  background: radial-gradient(circle, color-mix(in oklab, var(--accent) 28%, transparent) 0%, transparent 70%);
+  filter: blur(30px);
+  animation: ambientPulse 12s ease-in-out infinite;
+}
