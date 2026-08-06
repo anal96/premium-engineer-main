@@ -1,8 +1,8 @@
 services:
-  - type: static
+  - type: web
     name: premium-engineer-main
-    env: static
+    env: node
     branch: main
     root: premium-engineer-main
     buildCommand: "npm install && npm run build"
-    publishPath: ".output/public"
+    startCommand: "node .output/server/index.mjs"
