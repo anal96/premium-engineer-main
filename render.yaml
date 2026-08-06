@@ -1,0 +1,8 @@
+services:
+  - type: static
+    name: premium-engineer-main
+    env: static
+    branch: main
+    root: premium-engineer-main
+    buildCommand: "npm install && npm run build"
+    publishPath: "dist"
