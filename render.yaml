@@ -5,4 +5,4 @@ services:
     branch: main
     root: premium-engineer-main
     buildCommand: "npm install && npm run build"
-    publishPath: "dist"
+    publishPath: ".output/public"
