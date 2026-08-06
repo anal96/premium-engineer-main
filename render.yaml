@@ -4,5 +4,5 @@ services:
     env: node
     branch: main
     root: premium-engineer-main
-    buildCommand: "npm install && npm run build"
-    startCommand: "node .output/server/index.mjs"
+    buildCommand: "cd premium-engineer-main && NITRO_PRESET=node-server npm ci && NITRO_PRESET=node-server npm run build"
+    startCommand: "cd premium-engineer-main && node .output/server/index.mjs"
