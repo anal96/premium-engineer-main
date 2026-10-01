@@ -103,15 +103,15 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
           "@graph": [
             {
               "@type": "Person",
-              "@id": "https://analjoseph.dev/#person",
+              "@id": "https://anal-joseph.vercel.app/#person",
               name: "Anal Joseph",
               givenName: "Anal",
               familyName: "Joseph",
               jobTitle: "Data Scientist & Machine Learning Engineer",
               description:
                 "Data Scientist & Machine Learning Engineer with hands-on experience in Predictive Modeling, Generative AI, NLP, Python, and Power BI dashboards.",
-              url: "https://analjoseph.dev",
-              image: "https://analjoseph.dev/og-image.png",
+              url: "https://anal-joseph.vercel.app",
+              image: "https://anal-joseph.vercel.app/og-image.png",
               email: "mailto:analjoseph9744@gmail.com",
               telephone: "+917558056329",
               address: {
@@ -141,12 +141,12 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
             },
             {
               "@type": "WebSite",
-              "@id": "https://analjoseph.dev/#website",
-              url: "https://analjoseph.dev/",
+              "@id": "https://anal-joseph.vercel.app/#website",
+              url: "https://anal-joseph.vercel.app/",
               name: "Anal Joseph — Data Scientist Portfolio",
               description: "Portfolio of Anal Joseph — Data Scientist & Machine Learning Engineer.",
               publisher: {
-                "@id": "https://analjoseph.dev/#person",
+                "@id": "https://anal-joseph.vercel.app/#person",
               },
               inLanguage: "en-US",
             },

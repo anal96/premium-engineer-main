@@ -3,4 +3,4 @@ User-agent: *
 Allow: /
 
 # Sitemaps
-Sitemap: https://analjoseph.dev/sitemap.xml
+Sitemap: https://anal-joseph.vercel.app/sitemap.xml

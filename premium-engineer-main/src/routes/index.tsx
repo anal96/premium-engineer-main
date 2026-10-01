@@ -50,8 +50,8 @@ export const Route = createFileRoute("/")({
           "Explore the Data Science & ML portfolio of Anal Joseph. Featuring predictive analytics, generative AI prototypes, interactive BI dashboards, and end-to-end machine learning engineering.",
       },
       { property: "og:type", content: "profile" },
-      { property: "og:url", content: "https://analjoseph.dev/" },
-      { property: "og:image", content: "https://analjoseph.dev/og-image.png" },
+      { property: "og:url", content: "https://anal-joseph.vercel.app/" },
+      { property: "og:image", content: "https://anal-joseph.vercel.app/og-image.png" },
       { property: "og:image:width", content: "1200" },
       { property: "og:image:height", content: "630" },
       {
@@ -69,13 +69,13 @@ export const Route = createFileRoute("/")({
         content:
           "Explore the Data Science & ML portfolio of Anal Joseph. Featuring predictive analytics, generative AI prototypes, interactive BI dashboards, and end-to-end machine learning engineering.",
       },
-      { name: "twitter:image", content: "https://analjoseph.dev/og-image.png" },
+      { name: "twitter:image", content: "https://anal-joseph.vercel.app/og-image.png" },
       {
         name: "twitter:image:alt",
         content: "Anal Joseph — Data Scientist & Machine Learning Engineer Portfolio",
       },
     ],
-    links: [{ rel: "canonical", href: "https://analjoseph.dev/" }],
+    links: [{ rel: "canonical", href: "https://anal-joseph.vercel.app/" }],
   }),
   component: Portfolio,
 });
