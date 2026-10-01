@@ -120,7 +120,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
                 addressRegion: "Karnataka",
                 addressCountry: "IN",
               },
-              sameAs: ["https://www.linkedin.com/in/anal-joseph", "https://github.com/anal96"],
+              sameAs: ["https://www.linkedin.com/in/anal-joseph-/", "https://github.com/anal96"],
               knowsAbout: [
                 "Data Science",
                 "Machine Learning",

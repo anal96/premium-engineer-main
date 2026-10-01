@@ -1,6 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useRef, useState, type CSSProperties } from "react";
 import { AnimatePresence, motion, useScroll, useSpring } from "motion/react";
+import { X } from "lucide-react";
 import portrait from "@/assets/portrait.png";
 import project1 from "@/assets/project-1.jpg";
 import project2 from "@/assets/project-2.jpg";
@@ -650,9 +651,11 @@ function Nav({
           <button
             type="button"
             onClick={onOpenPalette}
-            className="inline-flex rounded-full border border-white/10 bg-white/5 px-3 py-2 text-[11px] uppercase tracking-[0.24em] text-platinum backdrop-blur-xl"
+            className="grid h-8 w-8 place-items-center rounded-full border border-white/10 bg-white/5 text-[14px] text-platinum backdrop-blur-xl transition-colors hover:border-accent hover:text-accent"
+            aria-label="Open Navigation Menu"
+            title="Open Quick Navigation (⌘)"
           >
-            ⌘K
+            ⌘
           </button>
           <div className="hidden items-center gap-2 rounded-full border border-white/10 bg-white/5 px-2 py-2 backdrop-blur-xl md:flex">
             {ACCENTS.map((option) => (
@@ -774,9 +777,12 @@ function Hero({ onOpenPalette }: { onOpenPalette: () => void }) {
               <button
                 type="button"
                 onClick={onOpenPalette}
-                className="inline-flex w-full items-center justify-center gap-3 rounded-full border border-white/10 bg-white/5 px-6 py-3.5 text-[13px] tracking-wider uppercase text-platinum backdrop-blur-xl transition-colors duration-300 hover:border-accent hover:text-accent sm:w-auto"
+                className="inline-flex w-full items-center justify-center gap-2.5 rounded-full border border-white/10 bg-white/5 px-6 py-3.5 text-[13px] tracking-wider uppercase text-platinum backdrop-blur-xl transition-colors duration-300 hover:border-accent hover:text-accent sm:w-auto"
               >
-                Quick Links (⌘K)
+                <span>Quick Links</span>
+                <span className="grid h-5 w-5 place-items-center rounded-full border border-white/10 bg-white/5 text-[11px] font-mono text-accent">
+                  ⌘
+                </span>
               </button>
             </ScrollReveal>
           </div>
@@ -1521,8 +1527,8 @@ function Contact({ onToast }: { onToast: (message: string) => void }) {
                 { label: "Location", value: "Bengaluru, Karnataka", href: undefined },
                 {
                   label: "LinkedIn",
-                  value: "linkedin.com/in/anal-joseph",
-                  href: "https://linkedin.com/in/anal-joseph",
+                  value: "linkedin.com/in/anal-joseph-",
+                  href: "https://www.linkedin.com/in/anal-joseph-/",
                 },
                 { label: "GitHub", value: "github.com/anal96", href: "https://github.com/anal96" },
               ].map(({ label, value, href }) => (
@@ -1860,35 +1866,47 @@ function CommandPalette({
   open: boolean;
   onOpenChange: (open: boolean) => void;
 }) {
+  const [query, setQuery] = useState("");
   if (!open) return null;
 
+  const links = [
+    ["Work", "#work"],
+    ["Experience", "#timeline"],
+    ["Skills", "#skills"],
+    ["Certifications", "#writing"],
+    ["Education", "#contact"],
+    ["Contact", "#contact"],
+  ].filter(([label]) => label.toLowerCase().includes(query.toLowerCase()));
+
   return (
-    <div className="fixed inset-0 z-[150] flex items-start justify-center bg-background/70 px-3 pt-20 backdrop-blur-xl sm:px-4 sm:pt-24">
-      <div className="w-full max-w-2xl rounded-[1.5rem] border border-white/10 bg-black/70 p-3 shadow-[0_30px_120px_-40px_rgba(0,0,0,0.95)] backdrop-blur-2xl sm:rounded-[2rem] sm:p-4">
-        <div className="flex items-center gap-3 rounded-full border border-white/10 bg-white/5 px-4 py-3 text-sm text-platinum">
-          <span className="text-accent">⌘K</span>
+    <div
+      className="fixed inset-0 z-[150] flex items-start justify-center bg-background/80 px-3 pt-16 backdrop-blur-xl sm:px-4 sm:pt-24"
+      onClick={(e) => {
+        if (e.target === e.currentTarget) onOpenChange(false);
+      }}
+    >
+      <div className="relative w-full max-w-2xl rounded-[1.5rem] border border-white/10 bg-black/85 p-4 shadow-[0_30px_120px_-40px_rgba(0,0,0,0.95)] backdrop-blur-2xl sm:rounded-[2rem] sm:p-5">
+        <div className="flex items-center gap-3 rounded-full border border-white/10 bg-white/5 px-4 py-2.5 sm:py-3 text-sm text-platinum">
+          <span className="text-accent text-base font-mono">⌘</span>
           <input
             autoFocus
+            value={query}
+            onChange={(e) => setQuery(e.target.value)}
             placeholder="Jump to work, experience, skills, certifications..."
-            className="w-full bg-transparent text-bone outline-none placeholder:text-muted-foreground"
+            className="w-full bg-transparent text-bone outline-none placeholder:text-muted-foreground text-sm"
           />
           <button
             type="button"
             onClick={() => onOpenChange(false)}
-            className="text-[11px] uppercase tracking-[0.24em] text-muted-foreground"
+            aria-label="Close menu"
+            className="flex items-center gap-1.5 rounded-full border border-white/10 bg-white/5 px-2.5 py-1 text-[11px] font-mono uppercase tracking-wider text-muted-foreground hover:border-accent hover:text-accent transition-colors"
           >
-            Esc
+            <span>Close</span>
+            <X className="h-3.5 w-3.5" />
           </button>
         </div>
         <div className="mt-4 grid gap-2">
-          {[
-            ["Work", "#work"],
-            ["Experience", "#timeline"],
-            ["Skills", "#skills"],
-            ["Certifications", "#writing"],
-            ["Education", "#contact"],
-            ["Contact", "#contact"],
-          ].map(([label, href]) => (
+          {links.map(([label, href]) => (
             <a
               key={label}
               href={href}
@@ -1942,7 +1960,7 @@ function Footer() {
             GitHub
           </a>
           <a
-            href="https://linkedin.com/in/anal-joseph"
+            href="https://www.linkedin.com/in/anal-joseph-/"
             target="_blank"
             rel="noopener noreferrer"
             className="hover:text-accent transition-colors"
