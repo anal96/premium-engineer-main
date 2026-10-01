@@ -685,8 +685,8 @@ function Hero({ onOpenPalette }: { onOpenPalette: () => void }) {
   return (
     <section id="top" className="relative pt-28 pb-20 sm:pt-36 lg:pt-52 lg:pb-40">
       <div className="container-lux">
-        <div className="grid grid-cols-12 gap-8 items-end">
-          <div className="col-span-12 lg:col-span-8">
+        <div className="flex flex-col gap-12 lg:grid lg:grid-cols-12 lg:gap-8 lg:items-end">
+          <div className="w-full min-w-0 lg:col-span-8">
             <ScrollReveal className="flex items-center gap-3 eyebrow mb-10">
               <span className="h-px w-10 bg-accent" />
               <ShinyText speed={6}>Data Scientist • ML, Generative AI & BI</ShinyText>
@@ -710,15 +710,15 @@ function Hero({ onOpenPalette }: { onOpenPalette: () => void }) {
               />
             </h1>
 
-            <ScrollReveal delay={0.2} className="mt-14 grid grid-cols-12 gap-6 max-w-3xl">
-              <p className="col-span-12 md:col-span-8 text-[15px] leading-relaxed text-platinum">
+            <ScrollReveal delay={0.2} className="mt-14 flex flex-col gap-6 max-w-3xl md:grid md:grid-cols-12">
+              <p className="w-full min-w-0 md:col-span-8 text-[15px] leading-relaxed text-platinum">
                 I'm <span className="text-bone">Anal Joseph</span>, a Data Scientist based in
                 Bengaluru with hands-on experience in Machine Learning, Generative AI, NLP, and
                 Business Intelligence. Skilled in Python, SQL, Scikit-learn, XGBoost, TensorFlow,
                 PyTorch, Hugging Face, and LangChain, building high-accuracy models and interactive
                 dashboards for 15+ stakeholders.
               </p>
-              <div className="col-span-12 md:col-span-4 space-y-2 text-[12px] font-mono text-muted-foreground">
+              <div className="w-full min-w-0 md:col-span-4 space-y-2 text-[12px] font-mono text-muted-foreground">
                 <div className="flex justify-between border-b border-line pb-1">
                   <span>Based</span>
                   <span className="text-bone">Bengaluru, KA</span>
@@ -781,7 +781,7 @@ function Hero({ onOpenPalette }: { onOpenPalette: () => void }) {
             </ScrollReveal>
           </div>
 
-          <div className="col-span-12 lg:col-span-4">
+          <div className="w-full min-w-0 lg:col-span-4">
             <ScrollReveal delay={0.15}>
               <TiltedCard className="group relative aspect-[4/5] overflow-hidden rounded-[2rem] border border-white/10 bg-graphite shadow-[0_30px_120px_-50px_rgba(0,0,0,0.8)] backdrop-blur-2xl">
                 <img
@@ -868,8 +868,8 @@ function Work() {
 
 function ProjectCase({ p, flip }: { p: (typeof PROJECTS)[number]; flip: boolean }) {
   return (
-    <article className="reveal grid grid-cols-12 gap-8 lg:gap-12">
-      <div className={`col-span-12 lg:col-span-7 ${flip ? "lg:order-2" : ""}`}>
+    <article className="reveal flex flex-col gap-8 lg:grid lg:grid-cols-12 lg:gap-12">
+      <div className={`w-full min-w-0 lg:col-span-7 ${flip ? "lg:order-2" : ""}`}>
         <TiltedCard
           max={6}
           className="group relative aspect-[16/10] overflow-hidden rounded-sm border border-line bg-graphite shadow-[var(--shadow-elevated)]"
@@ -895,7 +895,7 @@ function ProjectCase({ p, flip }: { p: (typeof PROJECTS)[number]; flip: boolean 
       </div>
 
       <div
-        className={`col-span-12 lg:col-span-5 flex flex-col ${
+        className={`w-full min-w-0 lg:col-span-5 flex flex-col ${
           flip ? "lg:order-1 lg:pr-6" : "lg:pl-6"
         }`}
       >
@@ -953,9 +953,9 @@ function ProjectCase({ p, flip }: { p: (typeof PROJECTS)[number]; flip: boolean 
 
 function Row({ label, children }: { label: string; children: React.ReactNode }) {
   return (
-    <div className="grid grid-cols-[6rem_1fr] gap-4 border-t border-line pt-4">
+    <div className="grid grid-cols-1 sm:grid-cols-[6rem_1fr] gap-1.5 sm:gap-4 border-t border-line pt-4">
       <dt className="eyebrow pt-1">{label}</dt>
-      <dd className="text-platinum leading-relaxed">{children}</dd>
+      <dd className="text-platinum leading-relaxed min-w-0">{children}</dd>
     </div>
   );
 }
@@ -1282,8 +1282,8 @@ function Education() {
   return (
     <section className="relative border-t border-line py-24 sm:py-28 lg:py-44">
       <div className="container-lux">
-        <div className="grid grid-cols-12 gap-8 items-center">
-          <div className="col-span-12 lg:col-span-5">
+        <div className="flex flex-col gap-10 lg:grid lg:grid-cols-12 lg:gap-8 items-start lg:items-center">
+          <div className="w-full min-w-0 lg:col-span-5">
             <div className="eyebrow mb-8">§ 08 — Education</div>
             <h2 className="font-display text-4xl leading-[0.95] tracking-[-0.035em] text-bone sm:text-5xl lg:text-7xl">
               Trained to build
@@ -1296,7 +1296,7 @@ function Education() {
               engineering, databases, and applied data science.
             </p>
           </div>
-          <div className="col-span-12 lg:col-span-7 space-y-6">
+          <div className="w-full min-w-0 lg:col-span-7 space-y-6">
             {[
               {
                 year: "January 2023 — December 2025",
@@ -1307,10 +1307,10 @@ function Education() {
             ].map((e, i) => (
               <div
                 key={i}
-                className="reveal group grid grid-cols-12 gap-6 border-t border-line pt-6"
+                className="reveal group flex flex-col gap-4 border-t border-line pt-6 sm:grid sm:grid-cols-12 sm:gap-6"
               >
-                <div className="col-span-12 sm:col-span-4 eyebrow text-accent">{e.year}</div>
-                <div className="col-span-12 sm:col-span-8">
+                <div className="w-full min-w-0 sm:col-span-4 eyebrow text-accent">{e.year}</div>
+                <div className="w-full min-w-0 sm:col-span-8">
                   <div className="font-display text-2xl sm:text-3xl text-bone tracking-[-0.02em]">
                     {e.degree}
                   </div>
@@ -1497,12 +1497,12 @@ function Contact({ onToast }: { onToast: (message: string) => void }) {
   };
 
   return (
-    <section id="contact" className="relative border-t border-line py-24 sm:py-28 lg:py-44">
+    <section id="contact" className="relative border-t border-line py-20 sm:py-28 lg:py-44 overflow-hidden">
       <div className="container-lux">
-        <div className="grid grid-cols-12 gap-10">
-          <div className="col-span-12 lg:col-span-6">
+        <div className="flex flex-col gap-12 lg:grid lg:grid-cols-12 lg:gap-10">
+          <div className="w-full min-w-0 lg:col-span-6">
             <div className="eyebrow">§ 09 — Contact</div>
-            <h2 className="mt-8 font-display text-5xl leading-[0.9] tracking-[-0.04em] text-bone sm:text-6xl lg:text-8xl">
+            <h2 className="mt-8 font-display text-4xl leading-[0.95] tracking-[-0.04em] text-bone sm:text-6xl lg:text-8xl">
               Let's build
               <br />
               intelligent solutions
@@ -1528,16 +1528,16 @@ function Contact({ onToast }: { onToast: (message: string) => void }) {
               ].map(({ label, value, href }) => (
                 <div
                   key={label}
-                  className="flex items-center justify-between border-b border-line pb-3"
+                  className="flex flex-col gap-1 border-b border-line pb-3 sm:flex-row sm:items-center sm:justify-between sm:gap-4"
                 >
-                  <dt className="eyebrow">{label}</dt>
-                  <dd className="text-bone">
+                  <dt className="eyebrow shrink-0">{label}</dt>
+                  <dd className="text-bone min-w-0 break-words">
                     {href ? (
                       <a
                         href={href}
                         target={href.startsWith("http") ? "_blank" : undefined}
                         rel={href.startsWith("http") ? "noopener noreferrer" : undefined}
-                        className="hover:text-accent transition-colors"
+                        className="hover:text-accent transition-colors break-all sm:break-normal"
                       >
                         {value}
                       </a>
@@ -1548,18 +1548,18 @@ function Contact({ onToast }: { onToast: (message: string) => void }) {
                 </div>
               ))}
             </dl>
-            <div className="mt-8 flex flex-wrap items-center gap-3">
+            <div className="mt-8 flex flex-col sm:flex-row flex-wrap items-stretch sm:items-center gap-3">
               <button
                 type="button"
                 onClick={copyEmail}
-                className="magnetic inline-flex items-center gap-3 rounded-full border border-white/10 bg-white/5 px-5 py-3 text-[12px] uppercase tracking-[0.24em] text-bone backdrop-blur-xl hover:border-accent hover:text-accent"
+                className="magnetic inline-flex items-center justify-center gap-3 rounded-full border border-white/10 bg-white/5 px-5 py-3 text-[12px] uppercase tracking-[0.24em] text-bone backdrop-blur-xl hover:border-accent hover:text-accent w-full sm:w-auto"
               >
                 <span className="h-1.5 w-1.5 rounded-full bg-accent" />
                 {copied ? "Copied" : "Copy Email"}
               </button>
               <a
                 href={`mailto:${email}`}
-                className="magnetic inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-5 py-3 text-[12px] uppercase tracking-[0.24em] text-platinum backdrop-blur-xl hover:border-accent hover:text-accent"
+                className="magnetic inline-flex items-center justify-center gap-2 rounded-full border border-white/10 bg-white/5 px-5 py-3 text-[12px] uppercase tracking-[0.24em] text-platinum backdrop-blur-xl hover:border-accent hover:text-accent w-full sm:w-auto text-center"
               >
                 Send Email ↗
               </a>
@@ -1574,7 +1574,7 @@ function Contact({ onToast }: { onToast: (message: string) => void }) {
                 animate={{ opacity: 1, scale: 1, y: 0 }}
                 exit={{ opacity: 0, scale: 0.95, y: -16 }}
                 transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
-                className="col-span-12 flex flex-col items-center justify-center rounded-[1.5rem] border border-accent/40 bg-card p-10 text-center shadow-[var(--shadow-elevated)] sm:p-12 lg:col-span-6"
+                className="w-full min-w-0 flex flex-col items-center justify-center rounded-[1.5rem] border border-accent/40 bg-card p-8 text-center shadow-[var(--shadow-elevated)] sm:p-12 lg:col-span-6"
               >
                 <SentAnimationTick />
 
@@ -1632,7 +1632,7 @@ function Contact({ onToast }: { onToast: (message: string) => void }) {
                 action="https://formspree.io/f/mzezwqgj"
                 method="POST"
                 onSubmit={handleSubmit}
-                className="reveal col-span-12 rounded-[1.5rem] border border-line bg-card p-6 shadow-[var(--shadow-elevated)] sm:p-8 lg:col-span-6 lg:p-12"
+                className="reveal w-full min-w-0 rounded-[1.5rem] border border-line bg-card p-5 sm:p-8 lg:col-span-6 lg:p-12 shadow-[var(--shadow-elevated)]"
               >
                 <div className="space-y-8">
                   <Field
@@ -1667,7 +1667,7 @@ function Contact({ onToast }: { onToast: (message: string) => void }) {
                           key={k}
                           type="button"
                           onClick={() => setFormData((prev) => ({ ...prev, engagement: k }))}
-                          className={`magnetic rounded-full border px-4 py-2 text-[12px] tracking-wider uppercase transition-all ${
+                          className={`magnetic rounded-full border px-3.5 py-2 text-[11px] sm:text-[12px] sm:px-4 tracking-wider uppercase transition-all ${
                             formData.engagement === k
                               ? "border-accent bg-accent text-background font-medium"
                               : "border-line text-platinum hover:border-accent hover:text-accent"
@@ -1982,14 +1982,14 @@ function SectionHeader({
   right: string;
 }) {
   return (
-    <div className="grid grid-cols-12 items-end gap-6 sm:gap-8">
-      <div className="col-span-12 lg:col-span-8">
+    <div className="flex flex-col items-start gap-6 sm:gap-8 lg:grid lg:grid-cols-12 lg:items-end">
+      <div className="w-full min-w-0 lg:col-span-8">
         <div className="reveal eyebrow mb-6 sm:mb-8">{eyebrow}</div>
         <h2 className="reveal font-display text-4xl leading-[0.95] tracking-[-0.035em] text-bone sm:text-5xl md:text-6xl lg:text-7xl">
           {title}
         </h2>
       </div>
-      <p className="reveal col-span-12 max-w-md text-[14px] leading-relaxed text-platinum lg:col-span-4">
+      <p className="reveal w-full min-w-0 max-w-md text-[14px] leading-relaxed text-platinum lg:col-span-4">
         {right}
       </p>
     </div>
