@@ -1,10 +1,11 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useRef, useState, type CSSProperties } from "react";
-import { motion, useScroll, useSpring } from "motion/react";
+import { AnimatePresence, motion, useScroll, useSpring } from "motion/react";
 import portrait from "@/assets/portrait.png";
 import project1 from "@/assets/project-1.jpg";
 import project2 from "@/assets/project-2.jpg";
 import project3 from "@/assets/project-3.jpg";
+import resumePdf from "../pdf/Anal_Joseph_Resume 3 (1).pdf?url";
 import {
   BlurText,
   CountUp,
@@ -19,21 +20,62 @@ import {
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Anal Joseph — AI Engineer, Data Scientist & Machine Learning Engineer" },
+      { title: "Anal Joseph — Data Scientist & Machine Learning Engineer" },
       {
         name: "description",
         content:
-          "Portfolio of Anal Joseph — an AI Engineer, Data Scientist and Machine Learning Engineer building intelligent products and enterprise software.",
+          "Portfolio of Anal Joseph — Data Scientist & Machine Learning Engineer based in Bengaluru, India. Hands-on experience across predictive modeling, conversational AI prototypes, NLP pipelines, and interactive BI dashboards.",
       },
-      { property: "og:title", content: "Anal Joseph — AI Engineer, Data Scientist & Machine Learning Engineer" },
+      {
+        name: "keywords",
+        content:
+          "Anal Joseph, Data Scientist, Machine Learning Engineer, AI Engineer Bengaluru, Generative AI, NLP, Predictive Modeling, Power BI, Python, Scikit-learn, PyTorch, Google Cloud, MongoDB, Luminar Technolab, Ziuke Infotech",
+      },
+      { name: "author", content: "Anal Joseph" },
+      { name: "creator", content: "Anal Joseph" },
+      { name: "publisher", content: "Anal Joseph" },
+      {
+        name: "robots",
+        content: "index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1",
+      },
+      { name: "geo.region", content: "IN-KA" },
+      { name: "geo.placename", content: "Bengaluru" },
+      { name: "geo.position", content: "12.9716;77.5946" },
+      { name: "ICBM", content: "12.9716, 77.5946" },
+      { property: "og:site_name", content: "Anal Joseph Portfolio" },
+      { property: "og:title", content: "Anal Joseph — Data Scientist & Machine Learning Engineer" },
       {
         property: "og:description",
         content:
-          "AI engineering, machine learning, data science and product-focused software engineering. Selected work, experience and certifications.",
+          "Explore the Data Science & ML portfolio of Anal Joseph. Featuring predictive analytics, generative AI prototypes, interactive BI dashboards, and end-to-end machine learning engineering.",
       },
-      { property: "og:type", content: "website" },
+      { property: "og:type", content: "profile" },
+      { property: "og:url", content: "https://analjoseph.dev/" },
+      { property: "og:image", content: "https://analjoseph.dev/og-image.png" },
+      { property: "og:image:width", content: "1200" },
+      { property: "og:image:height", content: "630" },
+      {
+        property: "og:image:alt",
+        content: "Anal Joseph — Data Scientist & Machine Learning Engineer Portfolio",
+      },
+      { property: "og:locale", content: "en_US" },
       { name: "twitter:card", content: "summary_large_image" },
+      {
+        name: "twitter:title",
+        content: "Anal Joseph — Data Scientist & Machine Learning Engineer",
+      },
+      {
+        name: "twitter:description",
+        content:
+          "Explore the Data Science & ML portfolio of Anal Joseph. Featuring predictive analytics, generative AI prototypes, interactive BI dashboards, and end-to-end machine learning engineering.",
+      },
+      { name: "twitter:image", content: "https://analjoseph.dev/og-image.png" },
+      {
+        name: "twitter:image:alt",
+        content: "Anal Joseph — Data Scientist & Machine Learning Engineer Portfolio",
+      },
     ],
+    links: [{ rel: "canonical", href: "https://analjoseph.dev/" }],
   }),
   component: Portfolio,
 });
@@ -72,7 +114,10 @@ function useCursor() {
     document.body.appendChild(dot);
     document.body.appendChild(ring);
 
-    let tx = 0, ty = 0, rx = 0, ry = 0;
+    let tx = 0,
+      ty = 0,
+      rx = 0,
+      ry = 0;
     let raf = 0;
     const onMove = (e: MouseEvent) => {
       tx = e.clientX;
@@ -140,7 +185,7 @@ const ACCENTS = [
 
 const NAV = [
   ["Work", "work"],
-  ["Timeline", "timeline"],
+  ["Experience", "timeline"],
   ["Skills", "skills"],
   ["Certifications", "writing"],
   ["Contact", "contact"],
@@ -150,144 +195,251 @@ const PROJECTS = [
   {
     n: "01",
     year: "2026",
-    title: "AI CRM & Learning Platform",
-    tagline: "Enterprise SaaS platform integrating CRM, role-based management, secure authentication, AI-powered learning workflows, streaming capabilities, analytics dashboards, and modern UI.",
-    image: project1,
+    title: "Predictive Analytics Model Development",
+    tagline:
+      "High-accuracy predictive machine learning models built to forecast business metrics and optimize decision-making at scale.",
+    image: project3,
     problem:
-      "Teams needed one platform that could manage customer relationships, learning content and secure role-based access without fragmented tooling.",
+      "Enterprise business operations required predictive analytics solutions capable of anticipating trends accurately rather than relying on static estimations.",
     solution:
-      "Built an AI-ready SaaS architecture with secure authentication, role-based management, streaming capability and dashboard analytics.",
-    stack: ["React", "TypeScript", "Node.js", "Express", "MongoDB", "JWT", "Tailwind CSS"],
-    impact: ["Role Based Architecture", "Secure Authentication", "AI Ready Infrastructure", "Dashboard Analytics"],
-    links: { github: "#", demo: "#" },
+      "Built and tuned machine learning models using Python, Scikit-learn, and XGBoost; applied structured data pipelines with Pandas, NumPy, and SQL to clean data and cut prep time by 20%.",
+    stack: ["Python", "Scikit-Learn", "XGBoost", "Pandas", "NumPy", "SQL", "Feature Engineering"],
+    impact: [
+      "90% Prediction Accuracy",
+      "12% Improvement Over Baseline",
+      "20% Reduction In Data Prep Time",
+      "Structured Multi-Model Validation",
+    ],
+    links: { github: "https://github.com/anal96", demo: "#" },
   },
   {
     n: "02",
     year: "2026",
-    title: "Attend Ease",
-    tagline: "Enterprise HR Management System designed for modern organizations.",
-    image: project2,
+    title: "NLP & Conversational AI Prototype",
+    tagline:
+      "End-to-end NLP classification and conversational AI system integrating Hugging Face transformer models, LangChain, and OpenAI API.",
+    image: project1,
     problem:
-      "Organizations needed a clean, role-aware workforce platform for tracking attendance, leave and internal tasks.",
+      "Automated analysis was needed to classify unstructured user text feedback, analyze sentiment, and provide conversational query assistance quickly.",
     solution:
-      "Delivered a full-stack HRMS with email automation, reports, dashboards and a responsive workflow-first interface.",
-    stack: ["React", "TypeScript", "Node.js", "MongoDB", "Express", "Tailwind"],
-    impact: ["Attendance Management", "Leave Management", "Work From Home Tracking", "Role Based Dashboards"],
-    links: { github: "#", demo: "#" },
+      "Developed NLP prototypes with Hugging Face and LangChain for text classification and sentiment analysis; integrated OpenAI API to enable real-world conversational workflows.",
+    stack: ["Hugging Face", "LangChain", "OpenAI API", "Python", "Transformers", "NLP"],
+    impact: [
+      "85% - 87% Classification Accuracy",
+      "Evaluated Across 500+ Test Samples",
+      "20% Cut In Average Response Handling Time",
+      "Context-Aware Conversational Pipelines",
+    ],
+    links: { github: "https://github.com/anal96", demo: "#" },
   },
   {
     n: "03",
-    year: "2025",
-    title: "AI & Data Science Projects",
-    tagline: "Collection of machine learning models solving business problems.",
-    image: project3,
+    year: "2026",
+    title: "Interactive BI & Analytics Dashboards",
+    tagline:
+      "Enterprise intelligence dashboards transforming 10,000 to 100,000+ records into executive insights and automated reporting.",
+    image: project2,
     problem:
-      "Businesses needed predictive models that could support customer, sentiment and recommendation use cases with measurable outcomes.",
+      "Fragmented data across teams caused manual reporting delays, making it challenging for leaders to surface actionable insights in real time.",
     solution:
-      "Built models for classification, regression, sentiment analysis, customer prediction and predictive analytics.",
-    stack: ["Python", "Scikit-Learn", "Pandas", "NumPy", "XGBoost", "TensorFlow", "PyTorch"],
-    impact: ["Customer Prediction", "Sentiment Analysis", "Classification Models", "Recommendation Systems"],
-    links: { github: "#", demo: "#" },
+      "Performed structured data analysis using Pandas, NumPy, and SQL, and engineered interactive, visually rich dashboards in Tableau and Power BI.",
+    stack: ["Tableau", "Power BI", "SQL", "Pandas", "NumPy", "EDA", "Data Visualization"],
+    impact: [
+      "30% Reduction In Manual Reporting Time",
+      "10k to 100k+ Records Analyzed",
+      "Used By 15+ Stakeholders",
+      "Real-Time Business KPI Visibility",
+    ],
+    links: { github: "https://github.com/anal96", demo: "#" },
   },
   {
     n: "04",
-    year: "2025",
-    title: "Conversational AI",
-    tagline: "Built intelligent chatbot prototypes using modern retrieval and prompt workflows.",
+    year: "2026",
+    title: "AI CRM & Learning Platform",
+    tagline:
+      "Enterprise SaaS platform integrating CRM, role-based management, secure JWT authentication, and AI-powered learning workflows.",
     image: project1,
     problem:
-      "Users needed faster access to structured information through conversational interfaces instead of complex navigation.",
+      "Teams needed one platform that could manage customer relationships, learning content, and secure role-based access without fragmented tooling.",
     solution:
-      "Prototyped assistants with LangChain, OpenAI APIs and Hugging Face for document retrieval and answer generation.",
-    stack: ["LangChain", "OpenAI API", "Hugging Face", "Prompt Engineering", "Document Retrieval", "Semantic Search"],
-    impact: ["Conversational AI", "Document Retrieval", "Semantic Search"],
-    links: { github: "#", demo: "#" },
+      "Built an AI-ready SaaS architecture with secure authentication, role-based management, streaming capabilities, and dashboard analytics.",
+    stack: ["React", "TypeScript", "Node.js", "Express", "MongoDB", "JWT", "Tailwind CSS"],
+    impact: [
+      "Role-Based Architecture",
+      "Secure JWT Authentication",
+      "AI-Ready Infrastructure",
+      "Dashboard Analytics",
+    ],
+    links: { github: "https://github.com/anal96", demo: "#" },
   },
   {
     n: "05",
-    year: "2024",
-    title: "Trineo Smart Tasks",
-    tagline: "VS Code extension focused on developer productivity.",
+    year: "2026",
+    title: "Attend Ease — Enterprise HRMS",
+    tagline:
+      "Full-stack workforce management system featuring automated attendance, leave tracking, and executive analytics.",
     image: project2,
     problem:
-      "Developers needed lightweight workflow automation directly inside their editor.",
+      "Organizations needed a clean, role-aware workforce platform for tracking attendance, leave, and internal team workflows.",
     solution:
-      "Built a productivity-focused VS Code extension with task shortcuts and a streamlined developer experience.",
-    stack: ["TypeScript", "VS Code Extension", "Developer UX"],
-    impact: ["600+ Downloads", "Developer workflow enhancement"],
-    links: { github: "#", demo: "#" },
+      "Delivered a full-stack HRMS with email automation, reports, role-based dashboards, and a responsive workflow-first interface.",
+    stack: ["React", "TypeScript", "Node.js", "MongoDB", "Express", "Tailwind CSS"],
+    impact: [
+      "Attendance & Leave Management",
+      "Work-From-Home Tracking",
+      "Email Automation & Alerts",
+      "Role-Based Dashboards",
+    ],
+    links: { github: "https://github.com/anal96", demo: "#" },
   },
 ] as const;
 
 const CAPABILITIES = [
   {
-    group: "Artificial Intelligence",
-    items: ["AI Product Design", "Automation", "Decision Systems", "Applied Intelligence"],
+    group: "Machine Learning & DL",
+    items: [
+      "Scikit-learn & XGBoost",
+      "TensorFlow & PyTorch",
+      "Predictive Modeling",
+      "Model Evaluation & Tuning",
+    ],
   },
   {
-    group: "Machine Learning",
-    items: ["Supervised Learning", "Unsupervised Learning", "Prediction", "Model Evaluation"],
+    group: "NLP & Generative AI",
+    items: [
+      "Hugging Face & Transformers",
+      "LangChain Workflows",
+      "OpenAI API Integration",
+      "Sentiment & Text Classification",
+    ],
   },
   {
-    group: "Generative AI",
-    items: ["LangChain", "OpenAI APIs", "Prompt Engineering", "Retrieval"],
+    group: "Data Analysis & BI",
+    items: [
+      "Pandas & NumPy",
+      "Tableau & Power BI",
+      "Exploratory Data Analysis (EDA)",
+      "Interactive Dashboards",
+    ],
   },
   {
-    group: "NLP",
-    items: ["Information Extraction", "Semantic Search", "Summarisation", "Speech"],
+    group: "Programming & SQL",
+    items: ["Python", "SQL (Query Optimization)", "TypeScript & JavaScript", "Git-Based Workflows"],
   },
   {
-    group: "Business Intelligence",
-    items: ["Dashboards", "Analytics", "Reporting", "Insights"],
+    group: "Cloud & Storage",
+    items: [
+      "Google Cloud Platform (GCP)",
+      "Amazon Web Services (AWS)",
+      "Cloud Model Training",
+      "Data Storage Pipelines",
+    ],
   },
   {
-    group: "Python Development",
-    items: ["Python", "Scikit-Learn", "Pandas", "NumPy"],
+    group: "Databases & Backends",
+    items: ["MongoDB", "Relational Databases", "RESTful APIs", "Database Monitoring"],
   },
   {
-    group: "Backend Engineering",
-    items: ["Node.js", "Express", "MongoDB", "MySQL"],
+    group: "Full-Stack Development",
+    items: ["React & Vite", "Node.js & Express", "Tailwind CSS", "Enterprise UI/UX"],
   },
   {
-    group: "Frontend Engineering",
-    items: ["React", "TypeScript", "Tailwind CSS", "Vite"],
+    group: "Engineering Discipline",
+    items: [
+      "Lifecycle Data Preprocessing",
+      "Feature Engineering",
+      "Ticket Resolution & Bug Triage",
+      "Stakeholder Decision Support",
+    ],
   },
 ];
 
 const TECH = [
-  "Python", "SQL", "JavaScript", "TypeScript", "HTML", "CSS",
-  "React", "Node.js", "Express", "Tailwind CSS", "Scikit-Learn", "TensorFlow",
-  "PyTorch", "XGBoost", "Pandas", "NumPy", "LangChain", "OpenAI API",
-  "Hugging Face", "Transformers", "Vector Databases", "MongoDB", "MySQL", "Git",
-  "GitHub", "Figma", "VS Code", "Docker", "Google Cloud", "Render", "Vercel",
+  "Python",
+  "SQL",
+  "Scikit-Learn",
+  "XGBoost",
+  "TensorFlow",
+  "PyTorch",
+  "Hugging Face",
+  "LangChain",
+  "OpenAI API",
+  "Pandas",
+  "NumPy",
+  "Tableau",
+  "Power BI",
+  "Exploratory Data Analysis (EDA)",
+  "Google Cloud (GCP)",
+  "AWS",
+  "MongoDB",
+  "TypeScript",
+  "Git",
+  "GitHub",
+  "Figma",
+  "React",
+  "Node.js",
+  "Express",
+  "Tailwind CSS",
+  "Docker",
 ];
 
 const EXPERIENCE = [
   {
-    year: "2026 — Present",
+    year: "April 2026 — Present",
     role: "Data Science Intern",
     company: "Luminar Technolab",
-    location: "Bengaluru",
-    note: "Worked across the complete AI development lifecycle.",
-    metric: "AI prototyping",
+    location: "Thrissur (Onsite)",
+    note: "Worked across the full data science lifecycle — data preprocessing, feature engineering, model building, analytics, and dashboard development to support business decision-making.",
+    tools: [
+      "Python",
+      "SQL",
+      "Scikit-learn",
+      "XGBoost",
+      "Hugging Face",
+      "LangChain",
+      "Tableau",
+      "Pandas",
+      "Git",
+      "AWS",
+      "GCP",
+    ],
+    metric: "+9% model accuracy • 30% reporting time cut • 15+ stakeholders",
+    highlights: [
+      "Built and optimized 3-4 machine learning models for predictive analytics using Python, Scikit-learn, and XGBoost, improving prediction accuracy by 9% over baseline models.",
+      "Performed structured data analysis on datasets of 10,000-100,000+ records using Pandas, NumPy, and SQL, and designed interactive dashboards in Tableau and Power BI, reducing manual reporting time by 30% for 15+ stakeholders.",
+      "Built NLP and conversational AI prototypes with Hugging Face, LangChain, and OpenAI API for sentiment analysis and text classification, reaching 87% classification accuracy across 500+ test samples.",
+      "Used Git for version control across model iterations and collaborated using AWS/GCP cloud environments for model training and data storage.",
+    ],
+  },
+  {
+    year: "January 2026 — April 2026",
+    role: "Project Associate",
+    company: "Ziuke Infotech Pvt. Ltd.",
+    location: "Thrissur (Onsite)",
+    note: "Contributed to a live development team on a contract basis, supporting feature delivery, bug resolution across assigned project modules, and Git-based collaborative workflows.",
+    tools: ["Git", "Module Delivery", "Bug Resolution", "Team Collaboration", "Code Quality"],
+    metric: "20+ tickets resolved • 15% bug backlog reduction",
+    highlights: [
+      "Contributed to a live development team on a contract basis, supporting feature delivery and bug resolution across assigned project modules, resolving 20+ tickets and reducing bug backlog by 15%.",
+      "Collaborated cross-functionally with developers and project stakeholders using Git-based workflows to deliver assigned project work on schedule.",
+    ],
   },
 ];
 
 const WRITING = [
   {
     kind: "Google Cloud",
-    title: "A Tour of Google Cloud Hands-on Labs",
-    venue: "Certification",
+    title: "A Tour of Google Cloud — Hands-on Labs",
+    venue: "Hands-on Labs Certification",
+    description:
+      "Completed hands-on labs covering core Google Cloud Platform (GCP) services, cloud infrastructure, and data workflows.",
   },
   {
     kind: "MongoDB",
     title: "Monitoring MongoDB with Built-in Tools",
-    venue: "Certification",
-  },
-  {
-    kind: "Google Play Academy",
-    title: "Store Listing Certificate",
-    venue: "Certification",
+    venue: "Database Certification",
+    description:
+      "Certification covering database performance monitoring, query diagnostics, and system optimization using MongoDB's built-in tooling.",
   },
 ];
 
@@ -318,7 +470,7 @@ function Portfolio() {
   useReveal();
   useCursor();
 
-  const [accent, setAccent] = useState(ACCENTS[0]);
+  const [accent, setAccent] = useState<(typeof ACCENTS)[number]>(ACCENTS[0]);
   const [loading, setLoading] = useState(true);
   const [paletteOpen, setPaletteOpen] = useState(false);
   const [toast, setToast] = useState<string | null>(null);
@@ -429,11 +581,15 @@ function BackgroundLights() {
           backgroundImage:
             "linear-gradient(var(--line) 1px, transparent 1px), linear-gradient(90deg, var(--line) 1px, transparent 1px)",
           backgroundSize: "96px 96px",
-          maskImage:
-            "radial-gradient(ellipse at center, black 40%, transparent 85%)",
+          maskImage: "radial-gradient(ellipse at center, black 40%, transparent 85%)",
         }}
       />
-      {["top-[8%] left-[14%]", "top-[28%] left-[72%]", "bottom-[18%] left-[21%]", "bottom-[10%] right-[12%]"].map((position, index) => (
+      {[
+        "top-[8%] left-[14%]",
+        "top-[28%] left-[72%]",
+        "bottom-[18%] left-[21%]",
+        "bottom-[10%] right-[12%]",
+      ].map((position, index) => (
         <span
           key={position}
           className={`ambient-dot ${position}`}
@@ -476,7 +632,7 @@ function Nav({
           </span>
           <span className="hidden sm:block text-sm tracking-wide text-bone">
             Anal Joseph
-            <span className="ml-2 text-muted-foreground">/ AI Engineer</span>
+            <span className="ml-2 text-muted-foreground">/ Data Scientist</span>
           </span>
         </a>
         <nav className="hidden md:flex items-center gap-8">
@@ -533,7 +689,7 @@ function Hero({ onOpenPalette }: { onOpenPalette: () => void }) {
           <div className="col-span-12 lg:col-span-8">
             <ScrollReveal className="flex items-center gap-3 eyebrow mb-10">
               <span className="h-px w-10 bg-accent" />
-              <ShinyText speed={6}>Machine Learning Engineer</ShinyText>
+              <ShinyText speed={6}>Data Scientist • ML, Generative AI & BI</ShinyText>
             </ScrollReveal>
             <h1 className="font-display text-[11vw] leading-[0.9] tracking-[-0.035em] text-bone sm:text-[9vw] lg:text-[7.5vw]">
               <SplitText text="My work" />
@@ -554,23 +710,26 @@ function Hero({ onOpenPalette }: { onOpenPalette: () => void }) {
               />
             </h1>
 
-            <p className="mt-6 max-w-2xl text-[15px] leading-relaxed text-platinum sm:text-[16px]">
-              I build scalable AI applications, machine learning solutions, intelligent automation,
-              and enterprise-grade software that transform complex data into meaningful business outcomes.
-            </p>
-
             <ScrollReveal delay={0.2} className="mt-14 grid grid-cols-12 gap-6 max-w-3xl">
               <p className="col-span-12 md:col-span-8 text-[15px] leading-relaxed text-platinum">
-                I'm <span className="text-bone">Anal Joseph</span>, an AI Engineer and Data Scientist passionate about building intelligent software that combines Machine Learning, Generative AI, Natural Language Processing, and modern software engineering.
+                I'm <span className="text-bone">Anal Joseph</span>, a Data Scientist based in
+                Bengaluru with hands-on experience in Machine Learning, Generative AI, NLP, and
+                Business Intelligence. Skilled in Python, SQL, Scikit-learn, XGBoost, TensorFlow,
+                PyTorch, Hugging Face, and LangChain, building high-accuracy models and interactive
+                dashboards for 15+ stakeholders.
               </p>
               <div className="col-span-12 md:col-span-4 space-y-2 text-[12px] font-mono text-muted-foreground">
                 <div className="flex justify-between border-b border-line pb-1">
                   <span>Based</span>
-                  <span className="text-bone">Bengaluru</span>
+                  <span className="text-bone">Bengaluru, KA</span>
+                </div>
+                <div className="flex justify-between border-b border-line pb-1">
+                  <span>Phone</span>
+                  <span className="text-bone">+91 7558056329</span>
                 </div>
                 <div className="flex justify-between border-b border-line pb-1">
                   <span>Focus</span>
-                  <span className="text-bone">AI Products</span>
+                  <span className="text-bone">Data Science & ML</span>
                 </div>
                 <div className="flex justify-between">
                   <span>Status</span>
@@ -579,7 +738,10 @@ function Hero({ onOpenPalette }: { onOpenPalette: () => void }) {
               </div>
             </ScrollReveal>
 
-            <ScrollReveal delay={0.35} className="mt-10 flex flex-col flex-wrap items-start gap-3 sm:mt-12 sm:flex-row sm:items-center sm:gap-4">
+            <ScrollReveal
+              delay={0.35}
+              className="mt-10 flex flex-col flex-wrap items-start gap-3 sm:mt-12 sm:flex-row sm:items-center sm:gap-4"
+            >
               <Magnet>
                 <a
                   href="#work"
@@ -597,29 +759,24 @@ function Hero({ onOpenPalette }: { onOpenPalette: () => void }) {
                   View Case Studies
                 </a>
               </Magnet>
-              <button
-                type="button"
-                onClick={() => {
-                  const blob = new Blob([
-                    `Anal Joseph\nAI Engineer • Data Scientist • Machine Learning Engineer\n\nLinkedIn: linkedin.com/in/anal-joseph\nGitHub: github.com/anal96\nLocation: Bengaluru, India\n`,
-                  ], { type: "text/plain;charset=utf-8" });
-                  const url = URL.createObjectURL(blob);
-                  const anchor = document.createElement("a");
-                  anchor.href = url;
-                  anchor.download = "Anal_Joseph_Resume.txt";
-                  anchor.click();
-                  URL.revokeObjectURL(url);
-                }}
-                className="inline-flex w-full items-center justify-center gap-3 rounded-full border border-white/10 bg-white/5 px-6 py-3.5 text-[13px] tracking-wider uppercase text-platinum backdrop-blur-xl transition-colors duration-300 hover:border-accent hover:text-accent sm:w-auto"
-              >
-                Download Resume
-              </button>
+              <Magnet>
+                <a
+                  href={resumePdf}
+                  download="Anal_Joseph_Resume.pdf"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex w-full items-center justify-center gap-3 rounded-full border border-white/10 bg-white/5 px-6 py-3.5 text-[13px] tracking-wider uppercase text-platinum backdrop-blur-xl transition-colors duration-300 hover:border-accent hover:text-accent sm:w-auto"
+                >
+                  <span className="h-1.5 w-1.5 rounded-full bg-accent" />
+                  Download Resume
+                </a>
+              </Magnet>
               <button
                 type="button"
                 onClick={onOpenPalette}
                 className="inline-flex w-full items-center justify-center gap-3 rounded-full border border-white/10 bg-white/5 px-6 py-3.5 text-[13px] tracking-wider uppercase text-platinum backdrop-blur-xl transition-colors duration-300 hover:border-accent hover:text-accent sm:w-auto"
               >
-                Contact Me
+                Quick Links (⌘K)
               </button>
             </ScrollReveal>
           </div>
@@ -654,12 +811,14 @@ function Hero({ onOpenPalette }: { onOpenPalette: () => void }) {
 
 function Marquee() {
   const words = [
+    "Data Science",
+    "Predictive Modeling",
     "Machine Learning",
     "Generative AI",
-    "Systems Design",
-    "Full-stack",
-    "Research → Product",
-    "Enterprise-grade",
+    "NLP & Transformers",
+    "Business Intelligence",
+    "Tableau & Power BI",
+    "Feature Engineering",
   ];
   const track = [...words, ...words];
   return (
@@ -687,8 +846,14 @@ function Work() {
       <div className="container-lux">
         <SectionHeader
           eyebrow="§ 01 — Selected Work"
-          title={<>Featured builds from<br /><em className="italic text-accent font-light">real product work.</em></>}
-          right="Enterprise SaaS, HR systems, applied data science and conversational AI projects shaped around practical business outcomes."
+          title={
+            <>
+              Featured builds from
+              <br />
+              <em className="italic text-accent font-light">real data & product work.</em>
+            </>
+          }
+          right="Predictive analytics, conversational AI prototypes, interactive BI dashboards, and enterprise platforms shaped around measurable business results."
         />
 
         <div className="mt-14 space-y-16 sm:mt-20 lg:mt-24 lg:space-y-40">
@@ -701,13 +866,7 @@ function Work() {
   );
 }
 
-function ProjectCase({
-  p,
-  flip,
-}: {
-  p: (typeof PROJECTS)[number];
-  flip: boolean;
-}) {
+function ProjectCase({ p, flip }: { p: (typeof PROJECTS)[number]; flip: boolean }) {
   return (
     <article className="reveal grid grid-cols-12 gap-8 lg:gap-12">
       <div className={`col-span-12 lg:col-span-7 ${flip ? "lg:order-2" : ""}`}>
@@ -808,9 +967,15 @@ function Timeline() {
     <section id="timeline" className="relative py-24 sm:py-28 lg:py-44 border-t border-line">
       <div className="container-lux">
         <SectionHeader
-          eyebrow="§ 02 — Career"
-          title={<>Experience that moves<br /><em className="italic text-accent font-light">from data to product.</em></>}
-          right="A focused internship path centered on the full AI development lifecycle, production thinking and practical delivery."
+          eyebrow="§ 02 — Experience"
+          title={
+            <>
+              Experience delivering
+              <br />
+              <em className="italic text-accent font-light">data science in production.</em>
+            </>
+          }
+          right="Hands-on experience across the entire data science lifecycle, predictive modeling, NLP prototypes, BI dashboards, and agile software delivery."
         />
 
         <div className="relative mt-24">
@@ -824,9 +989,7 @@ function Timeline() {
                 }`}
               >
                 <div
-                  className={`pl-12 md:pl-0 ${
-                    i % 2 === 0 ? "md:text-right md:pr-16" : "md:pl-16"
-                  }`}
+                  className={`pl-12 md:pl-0 ${i % 2 === 0 ? "md:text-right md:pr-16" : "md:pl-16"}`}
                 >
                   <div className="eyebrow text-accent">{e.year}</div>
                   <h4 className="mt-3 font-display text-2xl leading-[1.05] tracking-[-0.02em] text-bone sm:text-3xl lg:text-4xl">
@@ -836,12 +999,45 @@ function Timeline() {
                     {e.company} <span className="text-muted-foreground">— {e.location}</span>
                   </div>
                   <p
-                    className={`mt-5 text-[14px] leading-relaxed text-platinum max-w-md ${
+                    className={`mt-5 text-[14px] leading-relaxed text-platinum max-w-xl ${
                       i % 2 === 0 ? "md:ml-auto" : ""
                     }`}
                   >
                     {e.note}
                   </p>
+
+                  {e.highlights && (
+                    <ul
+                      className={`mt-4 space-y-2 text-[13px] text-platinum/90 max-w-xl ${
+                        i % 2 === 0 ? "md:ml-auto md:text-left" : ""
+                      }`}
+                    >
+                      {e.highlights.map((pt, idx) => (
+                        <li key={idx} className="flex items-start gap-2.5">
+                          <span className="h-1.5 w-1.5 rounded-full bg-accent mt-1.5 shrink-0" />
+                          <span className="leading-relaxed">{pt}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  )}
+
+                  {e.tools && (
+                    <div
+                      className={`mt-5 flex flex-wrap gap-1.5 ${
+                        i % 2 === 0 ? "md:justify-end" : ""
+                      }`}
+                    >
+                      {e.tools.map((t) => (
+                        <span
+                          key={t}
+                          className="rounded-full border border-line bg-card/60 px-2.5 py-0.5 text-[11px] font-mono text-muted-foreground"
+                        >
+                          {t}
+                        </span>
+                      ))}
+                    </div>
+                  )}
+
                   <div
                     className={`mt-6 inline-flex items-center gap-3 rounded-full border border-accent/40 bg-accent-soft px-4 py-1.5 text-[12px] font-mono text-accent`}
                   >
@@ -907,7 +1103,13 @@ function Skills() {
       <div className="container-lux">
         <SectionHeader
           eyebrow="§ 04 — Core Expertise"
-          title={<>Built to solve<br /><em className="italic text-accent font-light">real business problems.</em></>}
+          title={
+            <>
+              Built to solve
+              <br />
+              <em className="italic text-accent font-light">real business problems.</em>
+            </>
+          }
           right="Artificial intelligence, machine learning, data science and product engineering skills arranged around practical delivery rather than tool collecting."
         />
         <div className="mt-14 grid grid-cols-1 gap-px border border-line bg-line sm:mt-16 md:grid-cols-2 lg:grid-cols-4">
@@ -922,9 +1124,7 @@ function Skills() {
                 </span>
                 <span className="h-px w-6 bg-line group-hover:bg-accent transition-colors" />
               </div>
-              <h4 className="mt-6 font-display text-2xl text-bone tracking-[-0.02em]">
-                {c.group}
-              </h4>
+              <h4 className="mt-6 font-display text-2xl text-bone tracking-[-0.02em]">{c.group}</h4>
               <ul className="mt-6 space-y-2 text-[13px] text-platinum">
                 {c.items.map((it) => (
                   <li key={it} className="flex items-center gap-2">
@@ -957,21 +1157,18 @@ function Stats() {
   }, []);
 
   const stats = [
-    { label: "VS Code Extension Downloads", value: 600, suffix: "+" },
-    { label: "Enterprise AI CRM", value: 1, suffix: "" },
-    { label: "Full Stack HRMS", value: 1, suffix: "" },
-    { label: "Google Cloud Certified", value: 1, suffix: "" },
-    { label: "MongoDB Certified", value: 1, suffix: "" },
-    { label: "AI Projects", value: 12, suffix: "+" },
+    { label: "Predictive Model Accuracy", value: 90, suffix: "%" },
+    { label: "Reporting Time Reduced", value: 30, suffix: "%" },
+    { label: "Records Analyzed & Modeled", value: 100, suffix: "K+" },
+    { label: "NLP Classification Accuracy", value: 87, suffix: "%" },
+    { label: "Stakeholders Supported", value: 15, suffix: "+" },
+    { label: "Production Tickets Resolved", value: 20, suffix: "+" },
   ];
 
   return (
-    <section
-      ref={ref}
-      className="relative border-t border-line bg-ink/40 py-24 sm:py-28"
-    >
+    <section ref={ref} className="relative border-t border-line bg-ink/40 py-24 sm:py-28">
       <div className="container-lux">
-        <div className="eyebrow mb-16">§ 05 — Achievements</div>
+        <div className="eyebrow mb-16">§ 05 — Impact & Metrics</div>
         <div className="grid grid-cols-1 gap-px border border-line bg-line sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6">
           {stats.map((s) => (
             <Stat key={s.label} {...s} on={on} />
@@ -1013,29 +1210,32 @@ function Writing() {
       <div className="container-lux">
         <SectionHeader
           eyebrow="§ 06 — Certifications"
-          title={<>Learning,<br /><em className="italic text-accent font-light">validated.</em></>}
-          right="Selected certifications that back up the engineering and data science practice with formal training and platform knowledge."
+          title={
+            <>
+              Learning,
+              <br />
+              <em className="italic text-accent font-light">validated.</em>
+            </>
+          }
+          right="Selected certifications that back up practical data science and database engineering with formal credentialing."
         />
         <div className="mt-20 border-t border-line">
           {WRITING.map((w, i) => (
-            <a
+            <div
               key={i}
-              href="#"
               className="reveal group grid grid-cols-1 items-start gap-4 border-b border-line py-8 transition-colors hover:bg-card/50 sm:grid-cols-12 sm:items-center sm:gap-6"
             >
-              <div className="sm:col-span-3 md:col-span-2 eyebrow text-accent">
-                {w.kind}
+              <div className="sm:col-span-3 md:col-span-3 eyebrow text-accent">{w.kind}</div>
+              <div className="sm:col-span-9 md:col-span-6">
+                <h4 className="font-display text-2xl tracking-[-0.02em] text-bone transition-colors group-hover:text-accent md:text-3xl">
+                  {w.title}
+                </h4>
+                <p className="mt-2 text-sm text-platinum leading-relaxed">{w.description}</p>
               </div>
-              <h4 className="sm:col-span-9 md:col-span-7 font-display text-2xl tracking-[-0.02em] text-bone transition-colors group-hover:text-accent md:text-3xl">
-                {w.title}
-              </h4>
-              <div className="sm:col-span-12 md:col-span-2 text-[12px] font-mono text-muted-foreground md:text-right">
+              <div className="sm:col-span-12 md:col-span-3 text-[12px] font-mono text-muted-foreground md:text-right">
                 {w.venue}
               </div>
-              <div className="hidden md:flex col-span-1 justify-end text-platinum group-hover:text-accent transition-all group-hover:translate-x-1">
-                →
-              </div>
-            </a>
+            </div>
           ))}
         </div>
       </div>
@@ -1086,31 +1286,32 @@ function Education() {
           <div className="col-span-12 lg:col-span-5">
             <div className="eyebrow mb-8">§ 08 — Education</div>
             <h2 className="font-display text-4xl leading-[0.95] tracking-[-0.035em] text-bone sm:text-5xl lg:text-7xl">
-              Trained to build<br />
+              Trained to build
+              <br />
               <em className="italic text-accent font-light">practical intelligence</em>.
             </h2>
             <p className="mt-8 text-[15px] text-platinum leading-relaxed max-w-md">
-              Bachelor of Computer Applications from Indira Gandhi National Open University,
-              focused on computer science, programming, software development, artificial
-              intelligence and data science.
+              Bachelor of Computer Applications (BCA) in Computer Programming from Indira Gandhi
+              National Open University, providing a solid foundation in programming, software
+              engineering, databases, and applied data science.
             </p>
           </div>
           <div className="col-span-12 lg:col-span-7 space-y-6">
             {[
               {
-                year: "Current",
-                degree: "Bachelor of Computer Applications",
+                year: "January 2023 — December 2025",
+                degree: "BCA — Computer Programming",
                 school: "Indira Gandhi National Open University",
-                note: "Focused on Computer Science, Programming, Software Development, Artificial Intelligence and Data Science.",
+                note: "Curriculum focused on Computer Programming, Data Structures, Software Engineering, Database Systems, Machine Learning, and Data Science.",
               },
             ].map((e, i) => (
               <div
                 key={i}
                 className="reveal group grid grid-cols-12 gap-6 border-t border-line pt-6"
               >
-                <div className="col-span-4 eyebrow text-accent">{e.year}</div>
-                <div className="col-span-8">
-                  <div className="font-display text-3xl text-bone tracking-[-0.02em]">
+                <div className="col-span-12 sm:col-span-4 eyebrow text-accent">{e.year}</div>
+                <div className="col-span-12 sm:col-span-8">
+                  <div className="font-display text-2xl sm:text-3xl text-bone tracking-[-0.02em]">
                     {e.degree}
                   </div>
                   <div className="mt-2 text-sm text-platinum">{e.school}</div>
@@ -1127,17 +1328,171 @@ function Education() {
 
 /* ---------------------------------------------------------- contact */
 
+function SentAnimationTick() {
+  return (
+    <div className="relative mb-6 flex items-center justify-center">
+      {/* Outer ambient glow pulse */}
+      <motion.div
+        initial={{ scale: 0.5, opacity: 0 }}
+        animate={{ scale: [1, 1.3, 1.05], opacity: [0.3, 0.65, 0.25] }}
+        transition={{ duration: 2.2, repeat: Infinity, ease: "easeInOut" }}
+        className="absolute h-28 w-28 rounded-full bg-accent/25 blur-2xl"
+      />
+
+      {/* Pulsing ripple rings */}
+      <motion.div
+        initial={{ scale: 0.7, opacity: 0.8 }}
+        animate={{ scale: 1.6, opacity: 0 }}
+        transition={{ duration: 1.8, repeat: Infinity, ease: "easeOut", delay: 0.1 }}
+        className="absolute h-20 w-20 rounded-full border border-accent/40"
+      />
+      <motion.div
+        initial={{ scale: 0.7, opacity: 0.6 }}
+        animate={{ scale: 2.1, opacity: 0 }}
+        transition={{ duration: 2.2, repeat: Infinity, ease: "easeOut", delay: 0.6 }}
+        className="absolute h-20 w-20 rounded-full border border-accent/25"
+      />
+
+      {/* Main check badge */}
+      <motion.div
+        initial={{ scale: 0, rotate: -25, opacity: 0 }}
+        animate={{ scale: 1, rotate: 0, opacity: 1 }}
+        transition={{
+          type: "spring",
+          stiffness: 280,
+          damping: 18,
+          delay: 0.05,
+        }}
+        className="relative grid h-20 w-20 place-items-center rounded-full border border-accent/70 bg-gradient-to-b from-accent/20 via-card to-card shadow-[0_0_40px_rgba(208,245,71,0.25)]"
+      >
+        <svg
+          viewBox="0 0 64 64"
+          className="h-14 w-14 text-accent"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          {/* Animated circular outline drawing */}
+          <motion.circle
+            cx="32"
+            cy="32"
+            r="28"
+            stroke="currentColor"
+            strokeWidth="3"
+            strokeLinecap="round"
+            initial={{ pathLength: 0, opacity: 0 }}
+            animate={{ pathLength: 1, opacity: 1 }}
+            transition={{
+              duration: 0.6,
+              ease: "easeOut",
+            }}
+          />
+          {/* Animated checkmark ticking stroke */}
+          <motion.path
+            d="M20 32.5L28.5 41L44 23"
+            stroke="currentColor"
+            strokeWidth="4"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            initial={{ pathLength: 0, opacity: 0 }}
+            animate={{ pathLength: 1, opacity: 1 }}
+            transition={{
+              duration: 0.45,
+              delay: 0.45,
+              ease: [0.65, 0, 0.35, 1],
+            }}
+          />
+        </svg>
+
+        {/* Orbiting sparkles / particles */}
+        {[
+          { x: 26, y: -24, delay: 0.7 },
+          { x: 28, y: 22, delay: 0.8 },
+          { x: -28, y: 20, delay: 0.9 },
+          { x: -24, y: -26, delay: 0.75 },
+        ].map((pt, i) => (
+          <motion.span
+            key={i}
+            initial={{ scale: 0, opacity: 0, x: 0, y: 0 }}
+            animate={{ scale: [0, 1.2, 0.8], opacity: [0, 1, 0.6], x: pt.x, y: pt.y }}
+            transition={{ delay: pt.delay, duration: 0.6, ease: "easeOut" }}
+            className="absolute h-1.5 w-1.5 rounded-full bg-accent shadow-[0_0_8px_#d0f547]"
+          />
+        ))}
+      </motion.div>
+    </div>
+  );
+}
+
 function Contact({ onToast }: { onToast: (message: string) => void }) {
   const [copied, setCopied] = useState(false);
-  const email = "your-email@example.com";
+  const [submitting, setSubmitting] = useState(false);
+  const [submitted, setSubmitted] = useState(false);
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    company: "",
+    engagement: "Full Build",
+    brief: "",
+  });
+
+  const email = "analjoseph9744@gmail.com";
+  const phone = "+91 7558056329";
 
   const copyEmail = async () => {
     try {
       await navigator.clipboard.writeText(email);
       setCopied(true);
-      onToast("Email copied");
+      onToast("Email copied: analjoseph9744@gmail.com");
     } catch {
       onToast("Copy failed");
+    }
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!formData.name.trim() || !formData.email.trim() || !formData.brief.trim()) {
+      onToast("Please complete your Name, Email, and Brief");
+      return;
+    }
+
+    setSubmitting(true);
+    try {
+      const response = await fetch("https://formspree.io/f/mzezwqgj", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+        body: JSON.stringify({
+          name: formData.name,
+          email: formData.email,
+          company: formData.company || "Not specified",
+          engagement: formData.engagement,
+          message: formData.brief,
+        }),
+      });
+
+      if (response.ok) {
+        setSubmitted(true);
+        onToast("Enquiry sent to analjoseph9744@gmail.com!");
+        setFormData({
+          name: "",
+          email: "",
+          company: "",
+          engagement: "Full Build",
+          brief: "",
+        });
+      } else {
+        const result = await response.json().catch(() => null);
+        const errorMsg =
+          result?.errors?.map((err: { message: string }) => err.message).join(", ") ||
+          "Failed to send message. Please try again.";
+        onToast(errorMsg);
+      }
+    } catch {
+      onToast("Network error. Please try again or email directly.");
+    } finally {
+      setSubmitting(false);
     }
   };
 
@@ -1148,81 +1503,227 @@ function Contact({ onToast }: { onToast: (message: string) => void }) {
           <div className="col-span-12 lg:col-span-6">
             <div className="eyebrow">§ 09 — Contact</div>
             <h2 className="mt-8 font-display text-5xl leading-[0.9] tracking-[-0.04em] text-bone sm:text-6xl lg:text-8xl">
-              Let's build<br />
-              intelligent products<br />
+              Let's build
+              <br />
+              intelligent solutions
+              <br />
               <em className="italic text-accent font-light">together.</em>
             </h2>
             <p className="mt-10 max-w-md text-[15px] text-platinum leading-relaxed">
-              I&apos;m open to AI Engineering, Machine Learning Engineering, Data Science,
-              Generative AI, Software Engineering, Product Development, Research Collaborations,
-              and Freelance Projects.
+              I'm open to Data Science roles, Machine Learning Engineering, Generative AI &amp; NLP
+              initiatives, BI Dashboard development, and high-impact analytics projects.
             </p>
 
             <dl className="mt-14 space-y-4 text-[13px]">
               {[
-                ["Email", email],
-                ["LinkedIn", "linkedin.com/in/anal-joseph"],
-                ["GitHub", "github.com/anal96"],
-                ["Location", "Bengaluru, India"],
-              ].map(([k, v]) => (
+                { label: "Email", value: email, href: `mailto:${email}` },
+                { label: "Phone", value: phone, href: "tel:+917558056329" },
+                { label: "Location", value: "Bengaluru, Karnataka", href: undefined },
+                {
+                  label: "LinkedIn",
+                  value: "linkedin.com/in/anal-joseph",
+                  href: "https://linkedin.com/in/anal-joseph",
+                },
+                { label: "GitHub", value: "github.com/anal96", href: "https://github.com/anal96" },
+              ].map(({ label, value, href }) => (
                 <div
-                  key={k}
+                  key={label}
                   className="flex items-center justify-between border-b border-line pb-3"
                 >
-                  <dt className="eyebrow">{k}</dt>
-                  <dd className="text-bone">{v}</dd>
+                  <dt className="eyebrow">{label}</dt>
+                  <dd className="text-bone">
+                    {href ? (
+                      <a
+                        href={href}
+                        target={href.startsWith("http") ? "_blank" : undefined}
+                        rel={href.startsWith("http") ? "noopener noreferrer" : undefined}
+                        className="hover:text-accent transition-colors"
+                      >
+                        {value}
+                      </a>
+                    ) : (
+                      value
+                    )}
+                  </dd>
                 </div>
               ))}
             </dl>
-            <button
-              type="button"
-              onClick={copyEmail}
-              className="magnetic mt-8 inline-flex items-center gap-3 rounded-full border border-white/10 bg-white/5 px-5 py-3 text-[12px] uppercase tracking-[0.24em] text-bone backdrop-blur-xl"
-            >
-              <span className="h-1.5 w-1.5 rounded-full bg-accent" />
-              {copied ? "Copied" : "Copy Email"}
-            </button>
+            <div className="mt-8 flex flex-wrap items-center gap-3">
+              <button
+                type="button"
+                onClick={copyEmail}
+                className="magnetic inline-flex items-center gap-3 rounded-full border border-white/10 bg-white/5 px-5 py-3 text-[12px] uppercase tracking-[0.24em] text-bone backdrop-blur-xl hover:border-accent hover:text-accent"
+              >
+                <span className="h-1.5 w-1.5 rounded-full bg-accent" />
+                {copied ? "Copied" : "Copy Email"}
+              </button>
+              <a
+                href={`mailto:${email}`}
+                className="magnetic inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-5 py-3 text-[12px] uppercase tracking-[0.24em] text-platinum backdrop-blur-xl hover:border-accent hover:text-accent"
+              >
+                Send Email ↗
+              </a>
+            </div>
           </div>
 
-          <form
-            onSubmit={(e) => e.preventDefault()}
-            className="reveal col-span-12 rounded-[1.5rem] border border-line bg-card p-6 shadow-[var(--shadow-elevated)] sm:p-8 lg:col-span-6 lg:p-12"
-          >
-            <div className="space-y-8">
-              <Field label="Name" name="name" placeholder="Your full name" />
-              <Field label="Email" name="email" type="email" placeholder="you@company.com" />
-              <Field label="Company" name="company" placeholder="Where you build" />
-              <div>
-                <label className="eyebrow block mb-3">Engagement</label>
-                <div className="flex flex-wrap gap-2">
-                  {["Advisory", "Prototype", "Full Build", "Research"].map((k) => (
-                    <button
-                      key={k}
-                      type="button"
-                      className="magnetic rounded-full border border-line px-4 py-2 text-[12px] tracking-wider uppercase text-platinum hover:border-accent hover:text-accent"
-                    >
-                      {k}
-                    </button>
-                  ))}
-                </div>
-              </div>
-              <div>
-                <label className="eyebrow block mb-3">Brief</label>
-                <textarea
-                  rows={5}
-                  placeholder="A paragraph is enough. What are you circling?"
-                  className="w-full resize-none border-b border-line bg-transparent pb-3 text-[15px] text-bone placeholder:text-muted-foreground focus:border-accent focus:outline-none"
-                />
-              </div>
-              <button
-                type="submit"
-                className="magnetic group inline-flex w-full items-center justify-between rounded-full bg-bone px-7 py-4 text-[12px] font-medium tracking-[0.2em] uppercase text-background hover:bg-accent"
+          <AnimatePresence mode="wait">
+            {submitted ? (
+              <motion.div
+                key="submitted-card"
+                initial={{ opacity: 0, scale: 0.95, y: 16 }}
+                animate={{ opacity: 1, scale: 1, y: 0 }}
+                exit={{ opacity: 0, scale: 0.95, y: -16 }}
+                transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
+                className="col-span-12 flex flex-col items-center justify-center rounded-[1.5rem] border border-accent/40 bg-card p-10 text-center shadow-[var(--shadow-elevated)] sm:p-12 lg:col-span-6"
               >
-                Send Enquiry
-                <span className="transition-transform group-hover:translate-x-1">→</span>
-              </button>
-            </div>
-          </form>
+                <SentAnimationTick />
+
+                <motion.div
+                  initial={{ opacity: 0, y: 8 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.55, duration: 0.35 }}
+                  className="inline-flex items-center gap-2 rounded-full border border-accent/40 bg-accent-soft px-3.5 py-1.5 text-[11px] font-mono uppercase tracking-widest text-accent"
+                >
+                  <span className="relative flex h-2 w-2">
+                    <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-accent opacity-75" />
+                    <span className="relative inline-flex h-2 w-2 rounded-full bg-accent" />
+                  </span>
+                  Delivered Directly
+                </motion.div>
+
+                <motion.h3
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.65, duration: 0.4 }}
+                  className="mt-5 font-display text-3xl text-bone"
+                >
+                  Message Sent Successfully
+                </motion.h3>
+
+                <motion.p
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.75, duration: 0.4 }}
+                  className="mt-4 max-w-md text-[14px] leading-relaxed text-platinum"
+                >
+                  Thank you! Your enquiry has been delivered directly to{" "}
+                  <span className="font-semibold text-accent">{email}</span>. I will review it and
+                  get back to you shortly.
+                </motion.p>
+
+                <motion.button
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.85, duration: 0.4 }}
+                  type="button"
+                  onClick={() => setSubmitted(false)}
+                  className="magnetic mt-8 rounded-full border border-line bg-white/5 px-6 py-3 text-[12px] uppercase tracking-wider text-bone hover:border-accent hover:text-accent transition-colors"
+                >
+                  Send Another Message
+                </motion.button>
+              </motion.div>
+            ) : (
+              <motion.form
+                key="contact-form"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 0.3 }}
+                action="https://formspree.io/f/mzezwqgj"
+                method="POST"
+                onSubmit={handleSubmit}
+                className="reveal col-span-12 rounded-[1.5rem] border border-line bg-card p-6 shadow-[var(--shadow-elevated)] sm:p-8 lg:col-span-6 lg:p-12"
+              >
+                <div className="space-y-8">
+                  <Field
+                    label="Name"
+                    name="name"
+                    placeholder="Your full name"
+                    required
+                    value={formData.name}
+                    onChange={(e) => setFormData((prev) => ({ ...prev, name: e.target.value }))}
+                  />
+                  <Field
+                    label="Email"
+                    name="email"
+                    type="email"
+                    placeholder="you@company.com"
+                    required
+                    value={formData.email}
+                    onChange={(e) => setFormData((prev) => ({ ...prev, email: e.target.value }))}
+                  />
+                  <Field
+                    label="Company"
+                    name="company"
+                    placeholder="Where you build (optional)"
+                    value={formData.company}
+                    onChange={(e) => setFormData((prev) => ({ ...prev, company: e.target.value }))}
+                  />
+                  <div>
+                    <label className="eyebrow block mb-3">Engagement</label>
+                    <div className="flex flex-wrap gap-2">
+                      {["Advisory", "Prototype", "Full Build", "Research"].map((k) => (
+                        <button
+                          key={k}
+                          type="button"
+                          onClick={() => setFormData((prev) => ({ ...prev, engagement: k }))}
+                          className={`magnetic rounded-full border px-4 py-2 text-[12px] tracking-wider uppercase transition-all ${
+                            formData.engagement === k
+                              ? "border-accent bg-accent text-background font-medium"
+                              : "border-line text-platinum hover:border-accent hover:text-accent"
+                          }`}
+                        >
+                          {k}
+                        </button>
+                      ))}
+                    </div>
+                  </div>
+                  <div>
+                    <label className="eyebrow block mb-3">Brief</label>
+                    <textarea
+                      rows={5}
+                      required
+                      value={formData.brief}
+                      onChange={(e) => setFormData((prev) => ({ ...prev, brief: e.target.value }))}
+                      placeholder="A paragraph is enough. What problem are you aiming to solve?"
+                      className="w-full resize-none border-b border-line bg-transparent pb-3 text-[15px] text-bone placeholder:text-muted-foreground focus:border-accent focus:outline-none"
+                    />
+                  </div>
+                  <button
+                    type="submit"
+                    disabled={submitting}
+                    className="magnetic group inline-flex w-full items-center justify-between rounded-full bg-bone px-7 py-4 text-[12px] font-medium tracking-[0.2em] uppercase text-background transition-opacity hover:bg-accent disabled:opacity-60"
+                  >
+                    <span className="flex items-center gap-2">
+                      {submitting && (
+                        <svg
+                          className="h-4 w-4 animate-spin text-background"
+                          fill="none"
+                          viewBox="0 0 24 24"
+                        >
+                          <circle
+                            className="opacity-25"
+                            cx="12"
+                            cy="12"
+                            r="10"
+                            stroke="currentColor"
+                            strokeWidth="4"
+                          />
+                          <path
+                            className="opacity-75"
+                            fill="currentColor"
+                            d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+                          />
+                        </svg>
+                      )}
+                      <span>{submitting ? "Transmitting..." : "Send Enquiry"}</span>
+                    </span>
+                    <span className="transition-transform group-hover:translate-x-1">→</span>
+                  </button>
+                </div>
+              </motion.form>
+            )}
+          </AnimatePresence>
         </div>
       </div>
     </section>
@@ -1234,21 +1735,30 @@ function Field({
   name,
   type = "text",
   placeholder,
+  value,
+  onChange,
+  required,
 }: {
   label: string;
   name: string;
   type?: string;
   placeholder?: string;
+  value?: string;
+  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  required?: boolean;
 }) {
   return (
     <div>
       <label htmlFor={name} className="eyebrow block mb-3">
-        {label}
+        {label} {required && <span className="text-accent">*</span>}
       </label>
       <input
         id={name}
         name={name}
         type={type}
+        required={required}
+        value={value}
+        onChange={onChange}
         placeholder={placeholder}
         className="w-full border-b border-line bg-transparent pb-3 text-[15px] text-bone placeholder:text-muted-foreground focus:border-accent focus:outline-none"
       />
@@ -1308,7 +1818,9 @@ function LoadingScreen({ visible }: { visible: boolean }) {
 function DockNavigation() {
   const items = [
     { label: "Work", href: "#work" },
+    { label: "Experience", href: "#timeline" },
     { label: "Skills", href: "#skills" },
+    { label: "Certifications", href: "#writing" },
     { label: "Contact", href: "#contact" },
   ];
 
@@ -1341,7 +1853,13 @@ function FloatingActionButton({ onOpenPalette }: { onOpenPalette: () => void }) 
   );
 }
 
-function CommandPalette({ open, onOpenChange }: { open: boolean; onOpenChange: (open: boolean) => void }) {
+function CommandPalette({
+  open,
+  onOpenChange,
+}: {
+  open: boolean;
+  onOpenChange: (open: boolean) => void;
+}) {
   if (!open) return null;
 
   return (
@@ -1351,19 +1869,24 @@ function CommandPalette({ open, onOpenChange }: { open: boolean; onOpenChange: (
           <span className="text-accent">⌘K</span>
           <input
             autoFocus
-            placeholder="Jump to work, timeline, writing..."
+            placeholder="Jump to work, experience, skills, certifications..."
             className="w-full bg-transparent text-bone outline-none placeholder:text-muted-foreground"
           />
-          <button type="button" onClick={() => onOpenChange(false)} className="text-[11px] uppercase tracking-[0.24em] text-muted-foreground">
+          <button
+            type="button"
+            onClick={() => onOpenChange(false)}
+            className="text-[11px] uppercase tracking-[0.24em] text-muted-foreground"
+          >
             Esc
           </button>
         </div>
         <div className="mt-4 grid gap-2">
           {[
             ["Work", "#work"],
-            ["Timeline", "#timeline"],
+            ["Experience", "#timeline"],
             ["Skills", "#skills"],
-            ["Writing", "#writing"],
+            ["Certifications", "#writing"],
+            ["Education", "#contact"],
             ["Contact", "#contact"],
           ].map(([label, href]) => (
             <a
@@ -1373,9 +1896,22 @@ function CommandPalette({ open, onOpenChange }: { open: boolean; onOpenChange: (
               className="flex items-center justify-between rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-sm text-platinum transition-colors hover:border-accent hover:text-bone"
             >
               <span>{label}</span>
-              <span className="text-[11px] uppercase tracking-[0.24em] text-muted-foreground">{href}</span>
+              <span className="text-[11px] uppercase tracking-[0.24em] text-muted-foreground">
+                {href}
+              </span>
             </a>
           ))}
+          <a
+            href={resumePdf}
+            download="Anal_Joseph_Resume.pdf"
+            target="_blank"
+            rel="noopener noreferrer"
+            onClick={() => onOpenChange(false)}
+            className="flex items-center justify-between rounded-2xl border border-accent/40 bg-accent-soft px-4 py-3 text-sm text-accent transition-colors hover:border-accent hover:text-bone"
+          >
+            <span>Download Resume (PDF)</span>
+            <span className="text-[11px] uppercase tracking-[0.24em] font-mono">PDF ↗</span>
+          </a>
         </div>
       </div>
     </div>
@@ -1393,15 +1929,41 @@ function Footer() {
             AJ
           </span>
           <span className="text-[12px] font-mono text-muted-foreground tracking-widest uppercase">
-            Designed &amp; Engineered by Anal Joseph
+            Anal Joseph — Data Scientist • Bengaluru, Karnataka
           </span>
         </div>
         <div className="flex flex-wrap items-center gap-4 text-[12px] font-mono tracking-widest uppercase text-platinum sm:gap-6">
-          {["GitHub", "LinkedIn", "Resume", "Contact"].map((l) => (
-            <a key={l} href="#" className="hover:text-accent transition-colors">
-              {l}
-            </a>
-          ))}
+          <a
+            href="https://github.com/anal96"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="hover:text-accent transition-colors"
+          >
+            GitHub
+          </a>
+          <a
+            href="https://linkedin.com/in/anal-joseph"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="hover:text-accent transition-colors"
+          >
+            LinkedIn
+          </a>
+          <a
+            href={resumePdf}
+            download="Anal_Joseph_Resume.pdf"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-accent hover:underline transition-colors"
+          >
+            Resume (PDF)
+          </a>
+          <a href="mailto:analjoseph9744@gmail.com" className="hover:text-accent transition-colors">
+            Email
+          </a>
+          <a href="tel:+917558056329" className="hover:text-accent transition-colors">
+            +91 7558056329
+          </a>
         </div>
       </div>
     </footer>
